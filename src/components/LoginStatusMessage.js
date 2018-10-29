@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, StyleSheet, Text, View } from 'react-native';
@@ -12,28 +12,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginStatusMessage = ({ isLoggedIn, dispatch }) => {
-  if (!isLoggedIn) {
-    return <Text>Please log in</Text>;
+class LoginStatusMessage extends Component{
+  render() {
+    return (
+      <View>
+        <Text style={styles.welcome}>
+          {'You are "logged in" right now'}
+        </Text>
+        <Button
+          onPress={() =>
+            this.props.dispatch(NavigationActions.navigate({ routeName: 'Profile' }))}
+          title="Profile"
+        />
+      </View>
+    )
   }
-  return (
-    <View>
-      <Text style={styles.welcome}>
-        {'You are "logged in" right now'}
-      </Text>
-      <Button
-        onPress={() =>
-          dispatch(NavigationActions.navigate({ routeName: 'Profile' }))}
-        title="Profile"
-      />
-    </View>
-  );
-};
-
-LoginStatusMessage.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+}
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,

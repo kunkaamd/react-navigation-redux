@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
@@ -16,24 +16,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      Screen A
-    </Text>
-    <Text style={styles.instructions}>
-      This is great
-    </Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'Login' })}
-      title="Log in"
-    />
-  </View>
-);
-
-LoginScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
+class LoginScreen extends Component{
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Screen A
+        </Text>
+        <Text style={styles.instructions}>
+          This is great
+        </Text>
+        <Button
+          onPress={() => this.props.navigation.dispatch({ type: 'Login' })}
+          title="Log in"
+        />
+      </View>
+    )
+  }
+}
 
 LoginScreen.navigationOptions = {
   title: 'Log In',
