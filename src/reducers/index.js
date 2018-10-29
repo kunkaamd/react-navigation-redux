@@ -48,7 +48,34 @@ function auth(state = initialAuthState, action) {
       return state;
   }
 }
+/*
+example:
 
+***Component
+
+<TouchableOpacity onPress={()=>{this.props.updateUser({'username':this.state.username})}}>
+const mapDispatchToProps = dispatch => ({
+    updateUser: (user) => dispatch({ type: 'update',user: user }),
+});
+const mapStateToProps = state => ({
+    username: state.user.username,
+});
+export default connect(mapStateToProps,mapDispatchToProps)(Screen);
+
+***Reducer
+
+const initialState = {'username': 'hello'};
+const userReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "update":
+            return action.user;
+        default:
+            return state;
+    }
+};
+export default userReducer;
+
+*/
 const AppReducer = combineReducers({
   nav,
   auth,
